@@ -6,8 +6,6 @@ categories: [Open Hardware]
 tags: [RISCV, Microprocessors, Microcontrollers]
 ---
 
-Open Instruction Set Architecture Based Microprocessors and Microcontrollers
-
 **RISC-V** is an interesting architecture that will be a fit for open hardware enthusiasts who are working with various open hardware development boards. **RISC stands for “reduced instruction set computer”**, it's an open-source hardware architecture thats sets it a side from most others. Originally developed at Parallel Computing Laboratory, UC Berkely. it has no proprietary licensing. so anybody can build RISC-V microprocessors however they want and it increasingly popular, especially for embedded system on chip.
 
 If we see designers are under constant pressure to innoate yet to keep their intellectual property(IP) secret. This RISC-V open source hardware instruction set architecture(ISA) may interesting for hardware designers, researchers, and students to understanding of basic concepts and theories of computer architecture by making their own RISC-V CPU core.
