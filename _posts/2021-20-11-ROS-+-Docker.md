@@ -21,7 +21,7 @@ So, linux containers can kind of help simplify a lot of this stuff since docker 
 ### Installing Docker 
  Follow the official installation guide: [https://docs.docker.com/engine/install/debian/](https://docs.docker.com/engine/install/debian/)
 
-Or just run shell script:
+Or just run shell script: [debian docker install.sh](https://code.swecha.org/krvprashanth/shell-scripts/-/blob/main/docker.sh)
 
     #Set execute permission to script:
     chmod +x debian_docker_install.sh
