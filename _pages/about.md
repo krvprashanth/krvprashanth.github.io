@@ -9,5 +9,3 @@ I am Prashanth, a free software and open hardware enthusiast, Currently a third-
 On the side, I enjoy  practicing sustainable agriculture, exploring agriculture. Cultivating varieties of vegetables, flowers, field crops, & natural grass growing operations and testing ideas about the biological, social, and environmental aspects of farming.
 
 This website is mainly a blog where I write about projects I am working on or things I find interesting.
-
-#### 

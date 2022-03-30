@@ -18,6 +18,63 @@ Onother thing is if i'm collaborating with team mates, the computational environ
 
 So, linux containers can kind of help simplify a lot of this stuff since docker provides a containerized environment, we can have any version of ROS on our systems and on different distros using docker.                                                                                                               
 
+### Installing Docker 
+ Follow the official installation guide: [https://docs.docker.com/engine/install/debian/](https://docs.docker.com/engine/install/debian/)
+
+Or just run shell script:
+
+    #Set execute permission to script:
+    chmod +x debian_docker_install.sh
+    #To run your script, enter:
+    ./debian_docker_install.sh
+    #OR
+    sh debian_docker_install.sh
+    #OR
+    bash debian_docker_install.sh
+### Docker and Ros
+- We will be using OSRF (Open Source Robotics Foundation) ROS images
+     - [https://hub.docker.com/r/osrf/ros](https://hub.docker.com/r/osrf/ros)
+- In ROS images we will be using `osrf/ros:melodic-desktop-full`
+#### Setting Up ROS + Docker
+    #Create a catkin_ws on host
+    mkdir -p ~/catkin_ws/src
+
+    #Pull docker image
+    docker pull osrf/ros:melodic-desktop-full
+
+    #Allow local connections to X server
+    xhost +local:root
+
+    #Running the docker container for the first time | With GUI Support
+    docker run \
+    -it \
+    -v ~/catkin_ws:/root/catkin_ws \
+    --env="DISPLAY=$DISPLAY" \
+    --env="QT_X11_NO_MITSHM=1" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    --name rrcros \
+    osrf/ros:melodic-desktop-full
+
+    #Once inside the container, we add ros setup filer to bashrc
+    echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+
+    #Exiting the container from inside
+    exit  
+
+    ############
+
+    #Once initialized (3), we will use the following commands
+    #to interact with the container:
+
+    #Restarting the container | This will start it in background
+    docker start rrcros
+
+    #Getting inside a container running in background:
+    docker exec -it rrcros bash
+
+    #Stopping the container (from outside)
+    docker stop rrcros
+
 
 ### References:
 - [https://wiki.ros.org/docker](https://wiki.ros.org/docker)
