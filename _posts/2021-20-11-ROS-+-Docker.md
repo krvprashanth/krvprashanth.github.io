@@ -31,10 +31,14 @@ Or just run shell script:
     sh debian_docker_install.sh
     #OR
     bash debian_docker_install.sh
+
+
 ### Docker and Ros
 - We will be using OSRF (Open Source Robotics Foundation) ROS images
      - [https://hub.docker.com/r/osrf/ros](https://hub.docker.com/r/osrf/ros)
 - In ROS images we will be using `osrf/ros:melodic-desktop-full`
+
+
 #### Setting Up ROS + Docker
     #Create a catkin_ws on host
     mkdir -p ~/catkin_ws/src
