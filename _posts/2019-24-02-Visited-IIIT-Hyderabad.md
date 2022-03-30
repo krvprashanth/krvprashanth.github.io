@@ -2,8 +2,8 @@
 layout: post
 title: Visited IIIT Hyderabad
 date:  2019-02-24 11:27:00 +0900
-categories: [Education]
-tags: [Engineering, Thoughts]
+categories: [Experience]
+tags: [Engineering, College]
 ---
 
 
