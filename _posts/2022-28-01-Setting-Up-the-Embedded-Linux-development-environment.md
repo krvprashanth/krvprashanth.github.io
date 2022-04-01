@@ -6,6 +6,8 @@ categories: [Embedded Linux]
 tags: [GNU/Linux, Embedded Linux, System installation setup tools]
 ---
 
+The procedure for setting up a GNU/Linux host development environment to build the embedded linux application.
+
 - There are two ways to start with embedded Linux
   - Use **tools provided and supported by vendors** like MontaVista, Wind River or TimeSys. These tools comes with their own development and environment. These are mix of open-source components and proprietary tools.
   - Use **community tools**. These are completely open, supported by the community. 
