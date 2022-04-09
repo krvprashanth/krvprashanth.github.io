@@ -12,10 +12,6 @@ Majority of the mobiles come with a pre-loaded software called “Google Android
 
 After knowing all these things. I thought of de-googlify my phone and tried using different techniques, doing it by following a post in discuss.swecha.org and got to know that i have a horrible android phone(Vivo Y17) where I can’t unlock bootloader and flash then I tried taking help from the Mobile Freedom group and posted this question “How do i degooglify this mobile(Vivo Y71)?” The responses I got  to the question which i post is that Vivo is little tough to de-googlify.
 
-<center>
-<img src="https://github.com/krvprashanth/krvprashanth.github.io/blob/master/images/De-googlified.jpg" width=40%>
-</center>
-
 There are three options for me, disable manually or build custom rom, uninstall using adb (which is tough for me at that time) So, I didn’t take the risk to experiment with my android phone using adb, cause I need to use this mobile for at least 2 more years, so disabled apps, and location. finally, after two months found a solution in the mobile freedom group to remove the google apps. 
 
 Now it’s don’t required to unlock the bootloader and flash, in fact, this can be done in minimum steps. I checked on my android(Vivo) and it worked. All we need is the phone to allow adb access. adb will give permissions to remove apps.
