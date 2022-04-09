@@ -2,7 +2,7 @@
 layout: post
 title: Setting Up the Embedded Linux development environment
 date:  2022-01-28 11:27:00 +0900
-categories: [Embedded Linux]
+categories: [Embedded Linux, System Installation setup tools]
 tags: [GNU/Linux, Embedded Linux, System installation setup tools]
 ---
 

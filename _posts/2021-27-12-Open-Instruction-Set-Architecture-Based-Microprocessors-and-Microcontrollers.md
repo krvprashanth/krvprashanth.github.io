@@ -2,16 +2,20 @@
 layout: post
 title: Open Instruction Set Architecture Based Microprocessors and Microcontrollers
 date:  2021-12-27 11:27:00 +0900
-categories: [Open Hardware]
+categories: [Open Hardware, RISCV, Microprocessors, Microcontrollers]
 tags: [RISCV, Microprocessors, Microcontrollers]
 ---
+
+This semester we have microprocessor & microcontroller and computer architecture courses and these two courses were interlinked to each other and have some common topics as well, these courses were product centric. In these courses we learning mostly about Intel 1970's 8086 processor architecture and these courses syllabus were completely based on literature review,  instead it would be good if syllabus focus on present and future applications of the current and past literature. 
+
+As I was looking at are there any open instruction set architectures and that's where I got to know about RISC-V architecture. Here I'm writing about "Open Instruction Set Architecture Based Microprocessor and Microcontrollers" have a look at this. 
 
 **RISC-V** is an interesting architecture that will be a fit for open hardware enthusiasts who are working with various open hardware development boards. **RISC stands for “reduced instruction set computer”**, it's an open-source hardware architecture thats sets it a side from most others. Originally developed at Parallel Computing Laboratory, UC Berkely. it has no proprietary licensing. so anybody can build RISC-V microprocessors however they want and it increasingly popular, especially for embedded system on chip.
 
 If we see designers are under constant pressure to innoate yet to keep their intellectual property(IP) secret. This RISC-V open source hardware instruction set architecture(ISA) may interesting for hardware designers, researchers, and students to understanding of basic concepts and theories of computer architecture by making their own RISC-V CPU core.
 
 So, whats's unique about RISC-V base microcontroller developmentboards and RISC-V core which is in it? 
-We know the core, we know RISC-V, we know the software, we know the hardware, we know the chip layout - **Full Control - That's the beauty of hardware** that designed with RISC-V, open instruction set architecture. We are in full control of everything including it's security.
+We will be knowing/have access to the core, RISC-V, software, hardware, and chip layout - **Full Control - That's what the beauty of hardware** that designed with RISC-V, open instruction set architecture. We are in full control of everything including it's security.
 
 This Architecture is fairly new, and there is only one microcontroller widely available for RISC-V right now. it's SiFive freedom E310-G002. here are a collection of available physical hardware development boards based on RISC-V architecture.
 

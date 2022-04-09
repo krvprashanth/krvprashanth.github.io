@@ -2,7 +2,7 @@
 layout: post
 title: My machine
 date:  2022-01-19 11:27:00 +0900
-categories: [Computing]
+categories: [Computing, GNU/Linux, Experiences]
 tags: [GNU/Linux, Experiences]
 ---
 

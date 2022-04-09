@@ -2,7 +2,7 @@
 layout: post
 title: My schooling experiences making me to create Inclusive STEM learning spaces to students in rural settings
 date: 2019-11-26 11:27:00 +0900
-categories: [Education]
+categories: [Outreach, Thoughts, Education]
 tags: [Outreach, Thoughts, Experiences]
 ---
 

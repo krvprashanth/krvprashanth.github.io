@@ -1,8 +1,8 @@
 ---
 layout: post
 title: ROS + Docker
-date:  2021-11-20 11:27:00 +0900
-categories: [Free(dom) Software]
+date:  2021-07-20 11:27:00 +0900
+categories: [Free(dom) Software, Robotics, Linux Containers]
 tags: [robotics, linux containers]
 ---
 
