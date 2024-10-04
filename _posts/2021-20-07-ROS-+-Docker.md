@@ -85,3 +85,4 @@ Or just run shell script: [debian docker install.sh](https://code.swecha.org/krv
 - [https://wiki.ros.org/docker](https://wiki.ros.org/docker)
 - [https://wiki.ros.org/docker/Tutorials/GUI](https://wiki.ros.org/docker/Tutorials/GUI)
 - [https://tuw-cpsg.github.io/tutorials/docker-ros/](https://tuw-cpsg.github.io/tutorials/docker-ros/)
+- [https://www.osrfoundation.org/ruffin-white-georgia-tech-ros-docker-enabling-repeatable-reproducible-and-deployable-robotic-software-via-linux-containers/](https://www.osrfoundation.org/ruffin-white-georgia-tech-ros-docker-enabling-repeatable-reproducible-and-deployable-robotic-software-via-linux-containers/)
