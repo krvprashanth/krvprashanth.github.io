@@ -81,6 +81,7 @@ Or just run shell script: [debian docker install.sh](https://code.swecha.org/krv
 
 
 ### References:
+- [RRC Summer Session 2021 -  ROS With Docker](https://sprinkle-yam-c8c.notion.site/ROS-With-Docker-8d4973cc061148fdb7cc6f3c87529f25))
 - [https://wiki.ros.org/docker](https://wiki.ros.org/docker)
 - [https://wiki.ros.org/docker/Tutorials/GUI](https://wiki.ros.org/docker/Tutorials/GUI)
 - [https://tuw-cpsg.github.io/tutorials/docker-ros/](https://tuw-cpsg.github.io/tutorials/docker-ros/)
