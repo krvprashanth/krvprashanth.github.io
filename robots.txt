@@ -1,0 +1,4 @@
+Sitemap: https://krvprashanth.in/sitemapindex.xml
+
+User-Agent: *
+Host: krvprashanth.in
