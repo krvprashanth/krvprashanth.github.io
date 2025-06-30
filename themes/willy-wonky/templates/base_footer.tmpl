@@ -1,0 +1,14 @@
+{#  -*- coding: utf-8 -*- #}
+
+{% macro html_footer() %}
+    {% if content_footer %}
+      <footer class="article__meta footer">
+	<div>
+          <p class="footer-content">{{ content_footer }}</p>
+	</div>
+	<div>
+          {{ template_hooks['page_footer']() }}
+	</div>
+        </footer>
+    {% endif %}
+{% endmacro %}
