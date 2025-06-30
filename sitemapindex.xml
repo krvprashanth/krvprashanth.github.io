@@ -6,6 +6,22 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
+  <loc>https://krvprashanth.in/categories/cat_nikola.xml</loc>
+  <lastmod>2025-06-30T18:44:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://krvprashanth.in/categories/debian.xml</loc>
+  <lastmod>2025-06-30T18:44:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://krvprashanth.in/categories/duckietown.xml</loc>
+  <lastmod>2025-06-30T18:44:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://krvprashanth.in/categories/foss-contributions.xml</loc>
+  <lastmod>2025-06-30T18:44:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>https://krvprashanth.in/galleries/demo/rss.xml</loc>
   <lastmod>2025-06-30T10:56:00Z</lastmod>
  </sitemap>
@@ -15,10 +31,10 @@
  </sitemap>
  <sitemap>
   <loc>https://krvprashanth.in/rss.xml</loc>
-  <lastmod>2025-06-30T10:03:00Z</lastmod>
+  <lastmod>2025-06-30T18:44:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://krvprashanth.in/sitemap.xml</loc>
-  <lastmod>2025-06-30T10:56:00Z</lastmod>
+  <lastmod>2025-06-30T18:44:00Z</lastmod>
  </sitemap>
 </sitemapindex>

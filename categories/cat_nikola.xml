@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>krvprashanth</title><link>https://krvprashanth.in/</link><description>Bytes Beyond Bandwidth</description><atom:link href="https://krvprashanth.in/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents by krvprashanth&lt;/a&gt; 
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>krvprashanth (Posts about nikola)</title><link>https://krvprashanth.in/</link><description></description><atom:link href="https://krvprashanth.in/categories/cat_nikola.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents by krvprashanth&lt;/a&gt; 
 &lt;div class="license"&gt;
 &lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
 &lt;img alt="Creative Commons License BY-NC-SA"
