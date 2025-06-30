@@ -6,52 +6,12 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
-  <loc>https://krvprashanth.in/categories/blog.xml</loc>
-  <lastmod>2025-06-27T16:37:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/cat_nikola.xml</loc>
-  <lastmod>2025-06-30T07:59:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/contributions.xml</loc>
-  <lastmod>2025-06-28T19:06:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/debian.xml</loc>
-  <lastmod>2025-06-30T07:59:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/demo.xml</loc>
-  <lastmod>2025-06-27T16:37:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/duckietown.xml</loc>
-  <lastmod>2025-06-30T07:59:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/foss-contributions.xml</loc>
-  <lastmod>2025-06-30T07:59:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/foss.xml</loc>
-  <lastmod>2025-06-28T19:06:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/nikola.xml</loc>
-  <lastmod>2025-06-27T16:37:00Z</lastmod>
- </sitemap>
- <sitemap>
-  <loc>https://krvprashanth.in/categories/python.xml</loc>
-  <lastmod>2025-06-27T16:37:00Z</lastmod>
- </sitemap>
- <sitemap>
   <loc>https://krvprashanth.in/galleries/demo/rss.xml</loc>
-  <lastmod>2025-06-28T02:32:00Z</lastmod>
+  <lastmod>2025-06-30T10:39:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://krvprashanth.in/galleries/rss.xml</loc>
-  <lastmod>2025-06-28T02:32:00Z</lastmod>
+  <lastmod>2025-06-30T10:39:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://krvprashanth.in/rss.xml</loc>
@@ -59,6 +19,6 @@
  </sitemap>
  <sitemap>
   <loc>https://krvprashanth.in/sitemap.xml</loc>
-  <lastmod>2025-06-30T10:03:00Z</lastmod>
+  <lastmod>2025-06-30T10:39:00Z</lastmod>
  </sitemap>
 </sitemapindex>

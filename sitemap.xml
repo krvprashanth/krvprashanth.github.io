@@ -7,63 +7,15 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://krvprashanth.in/</loc>
-  <lastmod>2025-06-28T02:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/2012/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/2025/</loc>
-  <lastmod>2025-06-28T02:48:00Z</lastmod>
+  <lastmod>2025-06-30T10:12:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/archive.html</loc>
-  <lastmod>2025-06-30T10:03:00Z</lastmod>
+  <lastmod>2025-06-30T10:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/</loc>
-  <lastmod>2025-06-28T19:35:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/blog/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/cat_nikola/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/contributions/</loc>
-  <lastmod>2025-06-28T02:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/debian/</loc>
-  <lastmod>2025-06-28T02:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/demo/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/duckietown/</loc>
-  <lastmod>2025-06-28T19:35:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/foss-contributions/</loc>
-  <lastmod>2025-06-28T19:35:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/foss/</loc>
-  <lastmod>2025-06-28T02:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/nikola/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/categories/python/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
+  <lastmod>2025-06-30T10:12:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/galleries/</loc>
@@ -83,82 +35,10 @@
  </url>
  <url>
   <loc>https://krvprashanth.in/listings/hello.py.html</loc>
-  <lastmod>2025-06-28T02:32:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/About%20me/</loc>
-  <lastmod>2025-06-27T23:47:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/about-nikola/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
+  <lastmod>2025-06-30T10:39:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/pages/about/</loc>
   <lastmod>2025-06-27T16:52:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/bootstrap-demo/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/charts/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/creating-a-theme/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/dr-nikolas-vendetta/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/extending/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/handbook/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/internals/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/listings-demo/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/path-handlers/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/quickref/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/quickstart/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/social_buttons/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/stuff/</loc>
-  <lastmod>2025-06-27T23:24:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/pages/theming/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/posts/contributions-2025q2/</loc>
-  <lastmod>2025-06-28T02:43:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/posts/welcome-to-nikola/</loc>
-  <lastmod>2025-06-27T16:37:00Z</lastmod>
  </url>
 </urlset>
