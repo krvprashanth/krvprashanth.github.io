@@ -173,7 +173,7 @@ src="/images/cc-88x31.png"></a>
 # (translatable)
 CONTENT_FOOTER = """
 Contents by <a href="{contact}">{author}</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a><br>
-This blog site uses willy-wonky theme by <a href="https://gitlab.com/ru2saig/willy-wonky" target="_blank" rel="noopener">ru2saig</a><br>
+This site uses willy-wonky theme by <a href="https://gitlab.com/ru2saig/willy-wonky" target="_blank" rel="noopener">ru2saig</a><br>
 {license}
 """
 
