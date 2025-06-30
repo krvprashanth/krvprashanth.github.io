@@ -28,7 +28,7 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/", "blog"),
-        ("pages/about/", "about"),
+        ("/pages/about/", "about"),
 #        ("/archive/", "archive"),
         ("/rss.xml", "feed"), # TODO: Put this in the bottom, somehwere? As a clickable icon?
     ),
