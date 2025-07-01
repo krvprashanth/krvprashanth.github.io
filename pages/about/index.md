@@ -13,7 +13,7 @@ Hello! I'm Prashanth, Interested in the lower level working of Systems software,
 
 I'm also a radio amateur with a ham radio license in India, and my callsign is ***VU3JMT***. I like to experiment with radio electronics!
 
-Wanna talk me? The best way to contact me is sending email to _krvprashanth at riseup dot net_ or _vu3jmt at qsl dot net_. If you want to send me some encrypted email, use my GPG key: ***1E6F 3F63 030B 6AB9 1EAC C5D7 3A93 75EC 06B0 02A2*** and the ID is ***3A9375EC06B002A2***.
+Wanna talk me? The best way to contact me is sending email to _krvprashanth at riseup dot net_ or _vu3jmt at qsl dot net_. If you want to send me encrypted email, use my GPG public key: [3A9375EC06B002A2](https://keys.openpgp.org/vks/v1/by-fingerprint/1E6F3F63030B6AB91EACC5D73A9375EC06B002A2).
 
 
 ## Support Me
