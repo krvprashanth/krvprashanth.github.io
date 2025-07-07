@@ -6,7 +6,7 @@
 style="border-width:0; margin-bottom:12px;"
 src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;/div&gt;
-</copyright><lastBuildDate>Mon, 07 Jul 2025 12:55:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Homebrewing a basic circuit-switched GSM (2G) base station!</title><link>https://krvprashanth.in/posts/homebrew-gsm-base-station/</link><dc:creator>krvprashanth</dc:creator><description>&lt;p&gt;Have you ever set up your own web server? Used a Linux distro and played around with iptables, nginx, or netfilter? If you've done anything like that, you've experienced the power of open standards, open-source software, and hackable infrastructure.&lt;/p&gt;
+</copyright><lastBuildDate>Mon, 07 Jul 2025 13:14:22 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Homebrewing a basic circuit-switched GSM (2G) base station!</title><link>https://krvprashanth.in/posts/homebrew-gsm-base-station/</link><dc:creator>krvprashanth</dc:creator><description>&lt;p&gt;Have you ever set up your own web server? Used a Linux distro and played around with iptables, nginx, or netfilter? If you've done anything like that, you've experienced the power of open standards, open-source software, and hackable infrastructure.&lt;/p&gt;
 &lt;p&gt;Now imagine trying to do the same — but with a &lt;strong&gt;cellular network&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Until around 2009, if you wanted to build even the most basic GSM network, your only option was to approach telecom giants like Ericsson, Huawei, or Nokia, pitch yourself as a serious customer, and drop a six-digit sum — only to receive black-box equipment you couldn’t study, modify, or improve.&lt;/p&gt;
 &lt;h3&gt;Why no FOSS for cellular?&lt;/h3&gt;
@@ -365,17 +365,8 @@ subscriber-create-on-demand cs+ps
 &lt;h4&gt;Conclusion&lt;/h4&gt;
 &lt;p&gt;Osmocom’s GSM suite provides an invaluable platform for anyone interested in building, experimenting with, or understanding GSM networks. The modular design allows for flexible configurations, whether for testing voice calls, SMS, or data services. However, GSM’s inherent security vulnerabilities and strict legal requirements should always be considered when deploying even small-scale networks.&lt;/p&gt;
 &lt;p&gt;By combining Osmocom software with affordable SDR hardware, you can unlock deep insights into how mobile communication networks function, while also exploring real-world applications in education, research, and experimentation.&lt;/p&gt;
-&lt;h4&gt;Further Reading&lt;/h4&gt;
-&lt;p&gt;The Osmocom project provides comprehensive documentation for each of its components. To further explore and deepen your understanding, the following resources are highly recommended:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://osmocom.org/projects/osmo-nitb/wiki"&gt;Osmocom Network In The Box&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://osmocom.org/projects/cellular-infrastructure/wiki/Documentation"&gt;Osmocom Documentation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h4&gt;Helpful Links&lt;/h4&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;a href="https://osmocom.org/attachments/download/2611/running_gsm.pdf"&gt;Running GSM PDF - Osmocom&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://netdevconf.info/1.1/proceedings/slides/welte-foss-cellular-network-linux.pdf"&gt;FOSS Cellular Network with Linux - NetDevConf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://lucasteske.dev/2019/12/creating-your-own-gsm-network-with-limesdr/"&gt;Creating Your Own GSM Network with LimeSDR | Lets Hack It&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://limemicro.com/sdr/limesdr-mini-2-0/"&gt;https://limemicro.com/sdr/limesdr-mini-2-0/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://osmocom.org/projects/cellular/wiki"&gt;Osmocom Documentation - Osmocom&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/miraliumre/gsm"&gt;GSM GitHub Repository - miraliumre&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</description><category>gsm</category><category>limesdr</category><category>osmocom</category><guid>https://krvprashanth.in/posts/homebrew-gsm-base-station/</guid><pubDate>Sun, 06 Jul 2025 18:30:00 GMT</pubDate></item></channel></rss>
