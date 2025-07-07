@@ -7,7 +7,11 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://krvprashanth.in/</loc>
-  <lastmod>2025-06-30T10:12:00Z</lastmod>
+  <lastmod>2025-07-03T08:04:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/2024/</loc>
+  <lastmod>2025-07-03T08:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/2025/</loc>
@@ -15,11 +19,11 @@
  </url>
  <url>
   <loc>https://krvprashanth.in/archive.html</loc>
-  <lastmod>2025-06-30T18:44:00Z</lastmod>
+  <lastmod>2025-07-07T10:51:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/</loc>
-  <lastmod>2025-06-30T18:44:00Z</lastmod>
+  <lastmod>2025-07-03T08:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/cat_nikola/</loc>
@@ -36,6 +40,18 @@
  <url>
   <loc>https://krvprashanth.in/categories/foss-contributions/</loc>
   <lastmod>2025-06-30T18:44:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/gsm/</loc>
+  <lastmod>2025-07-03T08:04:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/limesdr/</loc>
+  <lastmod>2025-07-03T08:04:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/osmocom/</loc>
+  <lastmod>2025-07-03T08:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/galleries/</loc>
@@ -64,5 +80,9 @@
  <url>
   <loc>https://krvprashanth.in/posts/foss-contributions-2025q2/</loc>
   <lastmod>2025-06-30T18:40:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/posts/homebrew-gsm-base-station/</loc>
+  <lastmod>2025-07-03T08:04:00Z</lastmod>
  </url>
 </urlset>

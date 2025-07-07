@@ -6,7 +6,379 @@
 style="border-width:0; margin-bottom:12px;"
 src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;/div&gt;
-</copyright><lastBuildDate>Mon, 30 Jun 2025 18:44:48 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>FOSS Contributions 2025Q2</title><link>https://krvprashanth.in/posts/foss-contributions-2025q2/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
+</copyright><lastBuildDate>Mon, 07 Jul 2025 12:26:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Homebrewing a basic circuit-switched GSM (2G) base station!</title><link>https://krvprashanth.in/posts/homebrew-gsm-base-station/</link><dc:creator>krvprashanth</dc:creator><description>&lt;p&gt;Have you ever set up your own web server? Used a Linux distro and played around with iptables, nginx, or netfilter? If you've done anything like that, you've experienced the power of open standards, open-source software, and hackable infrastructure.&lt;/p&gt;
+&lt;p&gt;Now imagine trying to do the same — but with a &lt;strong&gt;cellular network&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Until around 2009, if you wanted to build even the most basic GSM network, your only option was to approach telecom giants like Ericsson, Huawei, or Nokia, pitch yourself as a serious customer, and drop a six-digit sum — only to receive black-box equipment you couldn’t study, modify, or improve.&lt;/p&gt;
+&lt;h3&gt;Why no FOSS for cellular?&lt;/h3&gt;
+&lt;p&gt;Despite GSM specs being publicly available since the '90s — just like TCP/IP — there were &lt;strong&gt;no Free and Open Source (FOSS)&lt;/strong&gt; implementations of cellular protocol stacks for nearly 20 years. Meanwhile, the Internet world thrived with open TCP/IP stacks and accessible development tools.&lt;/p&gt;
+&lt;p&gt;This gap wasn’t just technical — it was cultural:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Telecom Industry vs. Hacker mindset &lt;/li&gt;
+&lt;li&gt;Circuit-switched legacy vs. packet-switched openness &lt;/li&gt;
+&lt;li&gt;ITU-T bureaucracy vs. Internet community-driven development &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Enter Osmocom&lt;/h3&gt;
+&lt;p&gt;In 2008, a group of hackers set out to change that. They started building FOSS GSM implementations — from raw radio interfaces (&lt;code&gt;bs11-abis&lt;/code&gt;) to the BSC layer (&lt;code&gt;bsc_hack&lt;/code&gt;) to full mobile core software (&lt;code&gt;OpenBSC&lt;/code&gt;) and beyond.&lt;/p&gt;
+&lt;p&gt;This movement became &lt;strong&gt;Osmocom&lt;/strong&gt; — an umbrella project uniting many components needed to run your own GSM network with full control and full source code.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;In this post, I’ll share how I set up a &lt;strong&gt;GSM (2G) base station using a LimeSDR, Osmocom software, and a Linux-based single board computer&lt;/strong&gt;. No black boxes. No NDAs. Just open software, open specs, and a curious mind.&lt;/p&gt;
+&lt;!-- Side-by-side images --&gt;
+&lt;div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; align-items: center;"&gt;
+  &lt;img src="https://krvprashanth.in/images/gsmproto1.jpg" alt="Prototype 1" style="max-width: 45%; height: auto;"&gt;
+  &lt;img src="https://krvprashanth.in/images/gsmproto2.jpg" alt="Prototype 2" style="max-width: 45%; height: 25%;"&gt;
+&lt;/div&gt;
+
+&lt;!-- Caption --&gt;
+&lt;p style="text-align: center; font-style: italic; margin-top: 10px;"&gt;
+  This is a prototype I worked on trust me, it's a fully working 2G GSM base station. One can connect a phone to it, place calls, and send SMS - Just like a real cell tower.
+&lt;/p&gt;
+
+&lt;!-- Styled explanation block --&gt;
+&lt;blockquote style="border-left: 4px solid #ccc; padding-left: 15px; margin-top: 15px;"&gt;
+ It’s a proof that one can homebrew a functional 2G cell tower — no six-digit budget or vendor black boxes required.
+&lt;/blockquote&gt;
+
+&lt;div style="display: flex; justify-content: center; margin-top: 20px;"&gt;
+  &lt;iframe width="360" height="640" src="https://www.youtube.com/embed/yY4zZYFgAf0" title="Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;
+  &lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p style="text-align: center; font-style: italic;"&gt;
+  Connecting my phone to the above built GSM (2G) base station!
+&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Osmocom Logo" src="https://nickvsnetworking.com/wp-content/uploads/2020/04/Osmo.png"&gt;&lt;/p&gt;
+&lt;p&gt;Osmocom, short for &lt;strong&gt;Open Source Mobile Communications&lt;/strong&gt;, is a collection of open-source software projects that implement various components of mobile telecommunication networks. The core goal of Osmocom is to provide a free, open-source framework to develop, experiment with, and deploy mobile networks, particularly GSM (2G) but also extending to UMTS (3G), LTE (4G), and beyond.&lt;/p&gt;
+&lt;p&gt;This article explores &lt;strong&gt;Osmocom's GSM stack&lt;/strong&gt;, its key components, and how to use them to set up a software-based GSM network. The flexibility of this stack, along with compatible hardware such as LimeSDR or USRP, makes it possible for researchers, engineers, and hobbyists to create their own fully operational 2G mobile networks.&lt;/p&gt;
+&lt;h5&gt;Overview of GSM Technology&lt;/h5&gt;
+&lt;p&gt;Global System for Mobile Communications (GSM) is a standard developed for second-generation (2G) cellular networks. Despite the global shift towards 4G and 5G networks, GSM remains widely used, especially in rural or less developed areas. GSM provides voice, SMS, and limited data services through technologies like GPRS and EDGE.&lt;/p&gt;
+&lt;h6&gt;Key Concepts in GSM&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;BSC (Base Station Controller)&lt;/strong&gt;: Manages multiple BTS (Base Transceiver Stations) and oversees resource allocation, call setup, and handover between BTS units. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MSC (Mobile Switching Center)&lt;/strong&gt;: Acts as the central node that handles call switching, SMS routing, and interfacing with external networks like the PSTN (Public Switched Telephone Network).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HLR (Home Location Register)&lt;/strong&gt;: A database that stores permanent subscriber information, such as phone numbers (MSISDN), SIM details (IMSI), and authentication keys.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GPRS/EDGE&lt;/strong&gt;: Provides packet-switched data services over a GSM network, albeit at much lower speeds than modern mobile networks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Osmocom GSM Architecture&lt;/h5&gt;
+&lt;p&gt;&lt;img alt="GSM Architecture" src="https://nickvsnetworking.com/wp-content/uploads/2020/03/GSM-Architecture-768x589.png"&gt;&lt;/p&gt;
+&lt;p&gt;The Osmocom GSM software suite is divided into multiple components that replicate the traditional architecture of a 2G GSM network. These components can be run on commodity hardware and work with Software Defined Radios (SDRs) to transmit and receive GSM signals.&lt;/p&gt;
+&lt;h6&gt;Core Components of Osmocom GSM&lt;/h6&gt;
+&lt;p&gt;&lt;img alt="GSM Components" src="https://krvprashanth.in/images/gsm-components.png"&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoBSC (Base Station Controller)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Manages BTS units and coordinates call setup, handover, and resource management.
+    It interfaces with the MSC to connect calls and sessions with external networks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoMSC (Mobile Switching Center)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Responsible for call routing and switching within the network.
+    Handles SMS delivery and interacts with the HLR for subscriber authentication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoHLR (Home Location Register)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A database used for storing subscriber information, such as IMSI, MSISDN, and authentication keys (Ki).
+    Essential for subscriber registration and authentication within the GSM network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoTRX (Transceiver)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Implements a GSM transceiver that works with SDRs like LimeSDR or USRP.
+    Interfaces with OsmoBTS to handle low-level GSM radio operations, including encoding and modulation.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoBTS (Base Transceiver Station)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Controls the radio interface between mobile devices and the network.
+    Works with OsmoTRX to send and receive signals over the air.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoPCU (Packet Control Unit)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Handles data services (GPRS/EDGE) within the network.
+    Connects to the SGSN for managing data connections in a packet-switched domain.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoSGSN (Serving GPRS Support Node)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Manages the data sessions and mobility of users in the packet-switched domain.
+    Interacts with OsmoGGSN to provide internet access to users.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoGGSN (Gateway GPRS Support Node)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Provides a gateway for GPRS/EDGE services, routing data packets between the GSM network and external IP networks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoSTP (Signal Transfer Point)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Provides routing for SS7 signaling messages used in traditional telecom networks.
+    Essential for call control and interconnection between different network elements.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;OsmoMGW (Media Gateway)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Handles voice call audio routing between BTS, MSC, and external networks.
+    Supports transcoding between different audio formats, ensuring compatibility between different network segments.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5&gt;Setup&lt;/h5&gt;
+&lt;p&gt;We need the following to complete the setup:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A Linux machine (Debian 12 is recommended)&lt;/li&gt;
+&lt;li&gt;A LimeSDR Mini device (connected via USB)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optional&lt;/strong&gt;: Programmable SIM cards for custom authentication&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="LIMEsdr BTS Architecture" src="https://nickvsnetworking.com/wp-content/uploads/2020/03/osmo-trx-lms-1024x185.png"&gt;&lt;/p&gt;
+&lt;h6&gt;Clone the repository&lt;/h6&gt;
+&lt;p&gt;This repository contains the configuration files and scripts needed to set up the GSM network. Clone it using Git.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;git clone https://github.com/krvprashanth/GSM-LimeSDR-Osmocom.git
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h6&gt;Installing Required Packages and Verifying LimeSDR Connectivity&lt;/h6&gt;
+&lt;p&gt;Before we proceed with the actual setup, the first step is to install the necessary packages and ensure that your LimeSDR hardware is connected and working properly. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;scripts/install_osmocom_limesdr.sh&lt;/code&gt;
+This script automates the installation of all the necessary packages and tools for LimeSDR and Osmocom.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;scripts/hardware_test_limesdr.sh&lt;/code&gt;
+This script checks the connectivity and functionality of the LimeSDR device once it is physically connected to the system.&lt;/p&gt;
+&lt;p&gt;It performs the following tasks: Runs &lt;code&gt;LimeUtil --update&lt;/code&gt; to update the LimeSDR firmware and executes &lt;code&gt;LimeQuickTest&lt;/code&gt; to verify that the LimeSDR hardware is functioning properly.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;pi&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="n"&gt;limesdr&lt;/span&gt;&lt;span class="o"&gt;:~/&lt;/span&gt;&lt;span class="n"&gt;GSM&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Osmocom&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;scripts$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;hardware_test_limesdr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;
+&lt;span class="n"&gt;Updating&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="n"&gt;Connected&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;USB&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;USB&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;9070602432E16&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Existing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;firmware&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;same&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Existing&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;gateware&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;same&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;as&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.23&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;Firmware&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;and&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Gateware&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;required&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+
+&lt;span class="n"&gt;Programming&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;complete&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;updated&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;successfully&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;Running&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LimeQuickTest&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;the&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;properly&lt;/span&gt;&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;TESTING&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;STARTED&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Sat&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Oct&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;53&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;46&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2024&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;LimeSuite&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;23.11.0-23.11.0&lt;/span&gt;
+
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Device&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;USB&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;media&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;USB&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;module&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;FX3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;addr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="n"&gt;d50&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6108&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;serial&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0009070602432E16&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;HW&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;GW&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;2.23&lt;/span&gt;
+&lt;span class="nl"&gt;Warning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;USB3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;not&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;available&lt;/span&gt;
+&lt;span class="n"&gt;Serial&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Number&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0009070602432E16&lt;/span&gt;
+&lt;span class="n"&gt;Chip&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;temperature&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;
+
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Clock&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Network&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;FX3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;GPIF&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;clock&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;
+&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;38802&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;42558&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;46314&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Si5351C&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;
+&lt;span class="nl"&gt;CLK0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="nl"&gt;CLK1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="nl"&gt;CLK2&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="nl"&gt;CLK3&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="nl"&gt;CLK4&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="nl"&gt;CLK5&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="nl"&gt;CLK6&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;17554&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;ADF4002&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;
+&lt;span class="nl"&gt;Result&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;VCTCXO&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;
+&lt;span class="nl"&gt;Results&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5112943&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;5113075&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Clock&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Network&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;FPGA&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;EEPROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Read&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;EEPROM&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Read&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mo"&gt;03&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mo"&gt;03&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mo"&gt;02&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;FPGA&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;EEPROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LMS7002M&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Perform&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Registers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;External&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Reset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;
+&lt;span class="n"&gt;Reg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x20&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Write&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xFFFD&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Read&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0xFFFD&lt;/span&gt;
+&lt;span class="n"&gt;Reg&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x20&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;after&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;reset&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mh"&gt;0x0FFFF&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;LMS7002M&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RF&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Loopback&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nl"&gt;Note&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;The&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;should&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;be&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;without&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;anything&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;connected&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;RF&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;ports&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Configure&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LMS&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Tests&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TX_2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LNA_L&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;CH0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SXR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;800.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;805.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;-14.4&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dBFS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="n"&gt;CH1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SXR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;800.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;805.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;-16.1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dBFS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Tests&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TX_1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LNA_W&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;CH0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SXR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;1800.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;1805.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;-17.2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dBFS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="n"&gt;CH1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SXR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;1800.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;1805.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;-17.3&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dBFS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;Run&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Tests&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TX_2&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LNA_H&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;CH0&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SXR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;2500.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;2505.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;-17.2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dBFS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="n"&gt;CH1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;SXR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;2500.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;SXT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;2505.0&lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Result&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;-15.1&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;dBFS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;5.00&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;MHz&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;RF&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Loopback&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Test&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;
+
+&lt;span class="o"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Board&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tests&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;PASSED&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;
+
+&lt;span class="n"&gt;Elapsed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2.32&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;seconds&lt;/span&gt;
+
+&lt;span class="n"&gt;LimeQuickTest&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;completed&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;successfully&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;Your&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;working&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;properly&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;LimeSDR Test and Osmocom Services&lt;/h5&gt;
+&lt;p&gt;The output shows that the LimeSDR has been successfully tested and is working properly. Additionally, it indicates that the Osmocom services were started successfully. Here’s a breakdown of what’s happening and how we can interpret the output:&lt;/p&gt;
+&lt;h6&gt;1. LimeSDR Firmware Update&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LimeUtil --update&lt;/strong&gt;: The script attempted to update the LimeSDR firmware, but it was already up to date (both the firmware and gateware are the latest).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Update Complete&lt;/strong&gt;: The script confirms that no update was required, and the LimeSDR firmware is up to date.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;2. LimeQuickTest Results&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Clock Network Test&lt;/strong&gt;: The test on various clocks (FX3 GPIF, Si5351C, ADF4002, etc.) passed successfully, confirming that the clock system is operating correctly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FPGA EEPROM Test&lt;/strong&gt;: The FPGA EEPROM test passed, meaning that the EEPROM data is correctly read.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LMS7002M Test&lt;/strong&gt;: The test for the LMS7002M chip, which is the core of the LimeSDR, also passed.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RF Loopback Test&lt;/strong&gt;: The RF loopback tests for different channels (TX_2 -&amp;gt; LNA_L, TX_1 -&amp;gt; LNA_W, etc.) all passed successfully, confirming that the radio hardware is functioning properly.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;: The LimeSDR is confirmed to be in working condition, with no errors found during the tests.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;3. Starting Osmocom Services&lt;/h6&gt;
+&lt;ul&gt;
+&lt;li&gt;The Osmocom services are being managed using &lt;code&gt;systemctl&lt;/code&gt;. The command &lt;code&gt;sudo ./control_osmocom_services.sh start&lt;/code&gt; starts multiple Osmocom services like &lt;code&gt;osmo-hlr&lt;/code&gt;, &lt;code&gt;osmo-msc&lt;/code&gt;, &lt;code&gt;osmo-mgw&lt;/code&gt;, etc.&lt;/li&gt;
+&lt;li&gt;These services are essential for managing the GSM network stack and will allow the GSM network to function, supporting functionalities like call routing, SMS, and packet-switched data services.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6&gt;Next Steps&lt;/h6&gt;
+&lt;p&gt;After successfully running the LimeSDR test and starting the Osmocom services, you should now be able to:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Verify the GSM Network&lt;/strong&gt;: Check if the Osmocom services are running properly by using &lt;code&gt;systemctl status&lt;/code&gt; or &lt;code&gt;ps aux&lt;/code&gt; to ensure that the services like &lt;code&gt;osmo-hlr&lt;/code&gt;, &lt;code&gt;osmo-msc&lt;/code&gt;, etc., are active.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Test GSM Functionality&lt;/strong&gt;: You can now test various GSM functionalities such as making calls or sending SMS messages, assuming you have set up the proper configuration (like subscriber information, MSISDN, etc.).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Monitor the Services&lt;/strong&gt;: Use logs or monitoring tools to check the performance and health of the running Osmocom services and the LimeSDR.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If any issues arise, it may be helpful to check the logs for more detailed error messages, or to recheck the hardware connections of the LimeSDR.&lt;/p&gt;
+&lt;h5&gt;Customizing Configuration Files&lt;/h5&gt;
+&lt;p&gt;Navigate to the &lt;code&gt;rootfs/etc/osmocom&lt;/code&gt; folder within the cloned repository. These files need to be updated based on your specific network settings.&lt;/p&gt;
+&lt;h6&gt;Setting MCC and MNC&lt;/h6&gt;
+&lt;p&gt;In &lt;code&gt;osmo-bsc.cfg&lt;/code&gt; and &lt;code&gt;osmo-msc.cfg&lt;/code&gt;, configure the Mobile Country Code (MCC) and Mobile Network Code (MNC). For example:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;network country code 724
+mobile network code 64
+short name ComSec
+long name ComSec 2G Network
+authentication optional
+encryption a5 0
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You can customize these codes based on your country's MCC and select an unused MNC. Adjust the &lt;code&gt;authentication&lt;/code&gt; line based on whether you want to enforce authentication (change &lt;code&gt;optional&lt;/code&gt; to &lt;code&gt;required&lt;/code&gt; if needed).&lt;/p&gt;
+&lt;h6&gt;IP and DNS Settings&lt;/h6&gt;
+&lt;p&gt;In &lt;code&gt;osmo-ggsn.cfg&lt;/code&gt;, set up DNS and IP address ranges for network subscribers:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;ip dns 0 8.8.8.8
+ip dns 1 8.8.4.4
+ip prefix dynamic 172.16.32.0/24
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h6&gt;USSD Services&lt;/h6&gt;
+&lt;p&gt;In &lt;code&gt;osmo-hlr.cfg&lt;/code&gt;, you can define USSD services for users to query their IMSI or MSISDN:&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;ussd route prefix &lt;span class="gs"&gt;*#100# internal own-msisdn&lt;/span&gt;
+&lt;span class="gs"&gt;ussd route prefix *&lt;/span&gt;#101# internal own-imsi
+subscriber-create-on-demand cs+ps
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After modifying the necessary configuration files, copy all the configuration files to the /etc/osmocom directory on your system. A script for doing so is provided under &lt;code&gt;scripts/copy_osmocom_configs.sh&lt;/code&gt; for convenience.&lt;/p&gt;
+&lt;h6&gt;Start the Osmocom services&lt;/h6&gt;
+&lt;p&gt;Use the &lt;code&gt;scripts/control_osmocom_services.sh&lt;/code&gt; convenience script to start all the required Osmocom services (i.e. by running &lt;code&gt;scripts/control_osmocom_services.sh start&lt;/code&gt;). It is likely that the services had already been started automatically when you installed them, so it is recommended to completely stop them by running &lt;code&gt;scripts/control_osmocom_services.sh stop&lt;/code&gt; (and, possibly, &lt;code&gt;scripts/control_osmocom_services.sh kill&lt;/code&gt;, if needed) before starting them again.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="nf"&gt;pi&lt;/span&gt;&lt;span class="nv"&gt;@limesdr&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="o"&gt;~/&lt;/span&gt;&lt;span class="n"&gt;GSM&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;LimeSDR&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Osmocom&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;scripts&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;control_osmocom_services&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sh&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;
+&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;systemctl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;start&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;hlr&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;msc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;mgw&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;stp&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bsc&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ggsn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sgsn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;bts&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;trx&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;trx&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;lms&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pcu&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;osmo&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cbc&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h5&gt;Connecting Devices to the Network&lt;/h5&gt;
+&lt;h6&gt;Custom SIM Cards&lt;/h6&gt;
+&lt;p&gt;If your network requires authentication, insert your programmed SIM card into a mobile device, and it should connect automatically.&lt;/p&gt;
+&lt;h6&gt;Open Network&lt;/h6&gt;
+&lt;p&gt;For open networks, devices must manually select your network by disabling automatic network selection. The network may appear with a numerical name, composed of the MCC and MNC (e.g., "72464").&lt;/p&gt;
+&lt;h5&gt;Network Usage&lt;/h5&gt;
+&lt;h6&gt;For Networks with Authentication&lt;/h6&gt;
+&lt;p&gt;Insert your programmed SIM card into a device, and it will automatically connect.&lt;/p&gt;
+&lt;h6&gt;For Open Networks&lt;/h6&gt;
+&lt;p&gt;To manually connect:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Go to &lt;strong&gt;Settings&lt;/strong&gt; &amp;gt; &lt;strong&gt;Network &amp;amp; Internet&lt;/strong&gt; &amp;gt; &lt;strong&gt;Mobile Network&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Disable &lt;strong&gt;Automatically select network&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Select your GSM network from the list, which may appear as a numerical combination of the MCC and MNC (e.g., “72464”).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5&gt;Calls and SMS&lt;/h5&gt;
+&lt;p&gt;Once a device is connected to the GSM network, calls and SMS should function automatically. To identify the phone numbers to call or send SMS to, you need to look up each subscriber's &lt;strong&gt;MSISDN&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;You can obtain this information in two ways:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;From the host system&lt;/strong&gt;:&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Query the &lt;strong&gt;OsmoHLR VTY&lt;/strong&gt; to get the MSISDN of the subscribers.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Using USSD on a mobile device&lt;/strong&gt;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Dial &lt;code&gt;*#100#&lt;/code&gt; on the mobile phone to find out the assigned number directly on the device.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Once the MSISDN is identified, you can make calls and send SMS as usual within the network.&lt;/p&gt;
+&lt;h5&gt;Managing subscribers&lt;/h5&gt;
+&lt;p&gt;Manage subscribers via the OsmoHLR's VTY interface. By default, OsmoHLR binds its VTY to TCP port 4258. To connect, use telnet, as follows.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;sudo telnet 127.0.0.1 4258
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Upon successful connection, it will be presented with the OsmoHLR command prompt. To begin with, enter the enable mode.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;OsmoHLR&amp;gt; enable
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;For networks that require authentication, add subscribers manually by specifying IMSI and Ki values. To create a subscriber, refer to the following example, and replace the placeholder IMSI 724640000000000 with the actual IMSI of the SIM card you are registering.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;OsmoHLR&lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subscriber&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;imsi&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;724640000000000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt;
+&lt;span class="c"&gt;% Created subscriber 724640000000000&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;IMSI&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;724640000000000&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="n"&gt;MSISDN&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;none&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, assign a MSISDN to subscriber. In this case, we'll be using 12345678. Remember, this is a placeholder and should be replaced with the actual phone number we wish to assign.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="n"&gt;OsmoHLR&lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;subscriber&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;imsi&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;724640000000000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;update&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;msisdn&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;12345678&lt;/span&gt;
+&lt;span class="c"&gt;% Updated subscriber IMSI='724640000000000' to MSISDN='12345678'&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Next, specify the authentication parameters. In this example using comp128v1 as the AUC algorithm, but depending on our SIM card settings, comp128v3 may be required. The Ki (authentication key) provided here is a placeholder and must be replaced with the actual Ki of our SIM card.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;OsmoHLR# subscriber imsi 724640000000000 update aud2g comp128v1 ki 00000000000000000000000000000000
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Specify the network access mode (e.g., cs+ps for both circuit-switched and packet-switched access).&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;OsmoHLR# subscriber imsi 724640000000000 update network-access-mode cs+ps
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To view the updated information for a subscriber, use the show command.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre class="code literal-block"&gt;&lt;span class="nv"&gt;OsmoHLR&lt;/span&gt;#&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;subscriber&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;imsi&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;724640000000000&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="k"&gt;show&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;ID&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;IMSI&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;724640000000000&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;MSISDN&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;12345678&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="nv"&gt;G&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;auth&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nv"&gt;COMP128v1&lt;/span&gt;
+&lt;span class="w"&gt;             &lt;/span&gt;&lt;span class="nv"&gt;KI&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;00000000000000000000000000000000&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h4&gt;Extending Beyond GSM: UMTS and LTE&lt;/h4&gt;
+&lt;p&gt;Osmocom also offers support for 3G and LTE technologies. Projects like srsRAN enable LTE setups using similar principles, offering higher data rates and better security. While this guide focuses on GSM, transitioning to UMTS or LTE with Osmocom and SDR hardware is a logical next step for those interested in more advanced mobile networks.&lt;/p&gt;
+&lt;h4&gt;Conclusion&lt;/h4&gt;
+&lt;p&gt;Osmocom’s GSM suite provides an invaluable platform for anyone interested in building, experimenting with, or understanding GSM networks. The modular design allows for flexible configurations, whether for testing voice calls, SMS, or data services. However, GSM’s inherent security vulnerabilities and strict legal requirements should always be considered when deploying even small-scale networks.&lt;/p&gt;
+&lt;p&gt;By combining Osmocom software with affordable SDR hardware, you can unlock deep insights into how mobile communication networks function, while also exploring real-world applications in education, research, and experimentation.&lt;/p&gt;
+&lt;h4&gt;Further Reading&lt;/h4&gt;
+&lt;p&gt;The Osmocom project provides comprehensive documentation for each of its components. To further explore and deepen your understanding, the following resources are highly recommended:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://osmocom.org/projects/osmo-nitb/wiki"&gt;Osmocom Network In The Box&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://osmocom.org/projects/cellular-infrastructure/wiki/Documentation"&gt;Osmocom Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Helpful Links&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://osmocom.org/attachments/download/2611/running_gsm.pdf"&gt;Running GSM PDF - Osmocom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://netdevconf.info/1.1/proceedings/slides/welte-foss-cellular-network-linux.pdf"&gt;FOSS Cellular Network with Linux - NetDevConf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://lucasteske.dev/2019/12/creating-your-own-gsm-network-with-limesdr/"&gt;Creating Your Own GSM Network with LimeSDR | Lets Hack It&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://osmocom.org/projects/cellular/wiki"&gt;Osmocom Documentation - Osmocom&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/miraliumre/gsm"&gt;GSM GitHub Repository - miraliumre&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</description><category>gsm</category><category>limesdr</category><category>osmocom</category><guid>https://krvprashanth.in/posts/homebrew-gsm-base-station/</guid><pubDate>Sun, 06 Jul 2025 18:30:00 GMT</pubDate></item><item><title>FOSS Contributions 2025Q2</title><link>https://krvprashanth.in/posts/foss-contributions-2025q2/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
 &lt;p&gt;Hello everyone! I’m starting a series of quarterly posts about the contributions I’ve made or things I found interesting in collaborative Free and Open Source Software development. I will try to post one every quarter - let’s see how this goes.&lt;/p&gt;
 &lt;h2&gt;Debian&lt;/h2&gt;
 &lt;h4&gt;Debian Installer / flash-kernel&lt;/h4&gt;
