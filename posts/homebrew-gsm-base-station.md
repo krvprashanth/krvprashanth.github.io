@@ -405,21 +405,10 @@ Osmocom’s GSM suite provides an invaluable platform for anyone interested in b
 By combining Osmocom software with affordable SDR hardware, you can unlock deep insights into how mobile communication networks function, while also exploring real-world applications in education, research, and experimentation.
 
 
-### Further Reading
-
-The Osmocom project provides comprehensive documentation for each of its components. To further explore and deepen your understanding, the following resources are highly recommended:
-
-- [Osmocom Network In The Box](https://osmocom.org/projects/osmo-nitb/wiki)
-- [Osmocom Documentation](https://osmocom.org/projects/cellular-infrastructure/wiki/Documentation)
-
-
 ### Helpful Links
+1. [https://limemicro.com/sdr/limesdr-mini-2-0/](https://limemicro.com/sdr/limesdr-mini-2-0/)
+2. [Osmocom Documentation - Osmocom](https://osmocom.org/projects/cellular/wiki)
 
-1. [Running GSM PDF - Osmocom](https://osmocom.org/attachments/download/2611/running_gsm.pdf)
-2. [FOSS Cellular Network with Linux - NetDevConf](https://netdevconf.info/1.1/proceedings/slides/welte-foss-cellular-network-linux.pdf)
-3. [Creating Your Own GSM Network with LimeSDR | Lets Hack It](https://lucasteske.dev/2019/12/creating-your-own-gsm-network-with-limesdr/)
-4. [Osmocom Documentation - Osmocom](https://osmocom.org/projects/cellular/wiki)
-5. [GSM GitHub Repository - miraliumre](https://github.com/miraliumre/gsm)
 
 
 
