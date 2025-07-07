@@ -75,7 +75,7 @@ In this post, I’ll share how I set up a **GSM (2G) base station using a LimeSD
 
 Osmocom, short for **Open Source Mobile Communications**, is a collection of open-source software projects that implement various components of mobile telecommunication networks. The core goal of Osmocom is to provide a free, open-source framework to develop, experiment with, and deploy mobile networks, particularly GSM (2G) but also extending to UMTS (3G), LTE (4G), and beyond.
 
-This article explores **Osmocom's GSM stack**, its key components, and how to use them to set up a software-based GSM network. The flexibility of this stack, along with compatible hardware such as LimeSDR or USRP, makes it possible for researchers, engineers, and hobbyists to create their own fully operational 2G mobile networks.
+This post explores **Osmocom's GSM stack**, its key components, and how to use them to set up a software-based GSM network. The flexibility of this stack, along with compatible hardware such as LimeSDR or USRP, makes it possible for researchers, engineers, and hobbyists to create their own fully operational 2G mobile networks.
 
 #### Overview of GSM Technology
 
