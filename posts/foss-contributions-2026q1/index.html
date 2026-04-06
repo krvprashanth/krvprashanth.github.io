@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html \ prefix="
+        og: http://ogp.me/ns# article: http://ogp.me/ns/article#
+    " vocab="http://ogp.me/ns" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>FOSS Activity 2026Q1 | krvprashanth</title>
+<link href="../../assets/css/baguetteBox.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/rst_base.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/index.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/code.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="en" href="../../rss.xml">
+<link rel="canonical" href="https://krvprashanth.in/posts/foss-contributions-2026q1/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&amp;display=swap" rel="stylesheet">
+<link rel="/icon" href="//favicon.ico" sizes="32x32">
+<!--[if lt IE 9]><script src="../../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><meta name="author" content="krvprashanth">
+<link rel="prev" href="../foss-contributions-2025h2/" title="FOSS Activity 2025 (Q3 &amp; Q4)" type="text/html">
+<meta property="og:site_name" content="krvprashanth">
+<meta property="og:title" content="FOSS Activity 2026Q1">
+<meta property="og:url" content="https://krvprashanth.in/posts/foss-contributions-2026q1/">
+<meta property="og:description" content="Hello everyone! Quarterly post about the contributions I’ve made or things I found interesting in collaborative Free and Open Source Software development. 
+Debian GNU/Linux
+linux:
+
+
+
+Merge Requests
+
+
+">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-04-06T00:00:00+05:30">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="foss-contributions">
+<meta property="article:tag" content="kicad">
+<meta property="article:tag" content="kworkflow">
+<meta property="article:tag" content="meshtastic">
+<meta property="article:tag" content="raspberrypi">
+<meta property="article:tag" content="riscv">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+    <input id="dark-mode" type="checkbox"><div class="theme">
+        <div class="layout">
+              <header class="cover"><h1 id="brand" class="cover__title">
+<a href="../../" title="krvprashanth" rel="home">
+      <span id="blog-title">krvprashanth</span>
+  </a>
+  <label class="dark-mode-label hover:dark-mode-label" for="dark-mode">
+    <!--?xml version="1.0" encoding="UTF-8" standalone="no"?--><!-- Generator: Gravit.io -->
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation: isolate;" viewbox="0 0 416 416" width="30px" height="30px"><defs><clippath id="_clipPath_qEPwrMg7OPn6mDBNPkG6Nqc7qffgU4IC"><rect width="416" height="416"></rect></clippath></defs><g clip-path="url(#_clipPath_qEPwrMg7OPn6mDBNPkG6Nqc7qffgU4IC)"><path d=" M 304 88 C 304 57.38 299.49 26.39 288 0 C 364.43 33.27 416 111.32 416 200 C 416 319.29 319.29 416 200 416 C 111.32 416 33.27 364.43 0 288 C 26.39 299.49 57.38 304 88 304 C 207.29 304 304 207.29 304 88 Z "></path></g></svg></label>
+
+  </h1>
+  <span id="blog-desc">Bytes Beyond Bandwidth</span>
+
+       <div>
+     <nav class="nav-menu"><ul class="navigation">
+<li><a href="../../">blog</a></li>
+                <li><a href="../../pages/about/">about</a></li>
+                <li><a href="../../rss.xml">feed</a></li>
+
+	 
+	 
+	 
+       </ul></nav>
+</div>
+
+
+  </header><main id="content" class="content"><article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title header__title" itemprop="headline name">FOSS Activity 2026Q1</h1>
+
+        <div class="metadata">
+            <span class="byline author vcard p-author h-card">
+		Tags:
+            </span>
+                <a class="tag p-category article__meta__link hover:article__meta__link" href="../../categories/debian/" rel="tag">#debian </a>
+                <a class="tag p-category article__meta__link hover:article__meta__link" href="../../categories/foss-contributions/" rel="tag">#foss-contributions </a>
+                <a class="tag p-category article__meta__link hover:article__meta__link" href="../../categories/kicad/" rel="tag">#kicad </a>
+                <a class="tag p-category article__meta__link hover:article__meta__link" href="../../categories/kworkflow/" rel="tag">#kworkflow </a>
+                <a class="tag p-category article__meta__link hover:article__meta__link" href="../../categories/meshtastic/" rel="tag">#meshtastic </a>
+                <a class="tag p-category article__meta__link hover:article__meta__link" href="../../categories/raspberrypi/" rel="tag">#raspberrypi </a>
+                <a class="tag p-category article__meta__link hover:article__meta__link" href="../../categories/riscv/" rel="tag">#riscv </a>
+            <span class="dateline">
+              | <a class="article__meta__link hover:article__meta__link" href="." rel="bookmark">
+            <time class="published dt-published" datetime="2026-04-06T00:00:00+05:30" itemprop="datePublished" title="06-Apr-2026">06-Apr-2026</time></a>
+            </span>
+                    | <span class="sourceline"><a class="article__meta__link hover:article__meta__link" href="index.md">Source</a></span>
+
+        </div>
+        
+    </header><section class="e-content entry-content" itemprop="articleBody text"><hr>
+<p>Hello everyone! Quarterly post about the contributions I’ve made or things I found interesting in collaborative Free and Open Source Software development. </p>
+<h2>Debian GNU/Linux</h2>
+<h3>
+<a href="https://tracker.debian.org/pkg/linux">linux</a>:</h3>
+<table>
+<thead><tr>
+<th>Merge Requests</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a href="https://salsa.debian.org/kernel-team/linux/-/merge_requests/1844">!1844:  [arm64,armhf] Enable SND_SOC_WM8731_I2C and COMMON_CLK_SI5351 as module</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/kernel-team/linux/-/merge_requests/1846">!1846: [armhf] drivers/gpu/drm/v3d: Enable DRM_V3D as module</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/kernel-team/linux/-/merge_requests/1847">!1847: [armhf] Enable Config for Device Tree Overlays</a></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a href="https://tracker.debian.org/pkg/flash-kernel">flash-kernel</a>:</h3>
+<table>
+<thead><tr>
+<th>Merge Requests</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a href="https://salsa.debian.org/installer-team/flash-kernel/-/merge_requests/82">!82: Add: Support for TI AM67A BeagleY-AI</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/installer-team/flash-kernel/-/merge_requests/83">!83: Add: Support for TI K3 AM62x based BeagleBoard.org boards</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/installer-team/flash-kernel/-/merge_requests/84">!84: debian/changelog: Add Closes</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/installer-team/flash-kernel/-/merge_requests/85">!85: Add: Support for D-step version of BCM2712 Raspberry Pi 5</a></td>
+</tr>
+</tbody>
+</table>
+<h3>
+<a href="https://tracker.debian.org/pkg/optee-os">optee-os</a>:</h3>
+<table>
+<thead><tr>
+<th>Merge Requests</th>
+</tr></thead>
+<tbody><tr>
+<td><a href="https://salsa.debian.org/debian/optee-os/-/merge_requests/2">!2:  Build optee-os for TI K3 J721E/TDA4VM BeagleBone AI-64</a></td>
+</tr></tbody>
+</table>
+<h3>
+<a href="https://tracker.debian.org/pkg/extrepo">extrepo</a>:</h3>
+<table>
+<thead><tr>
+<th>Merge Requests</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a href="https://salsa.debian.org/extrepo-team/extrepo-data/-/merge_requests/533">!533: Add: Arduino repository</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/extrepo-team/extrepo-data/-/merge_requests/534">!534: Mozilla: enable repository for arm64</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/extrepo-team/extrepo-data/-/merge_requests/535">!535: Mobian: enable repository for forky</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/extrepo-team/extrepo-data/-/merge_requests/536">!536: BeagleBoard: use templating, add repositories and GPG key</a></td>
+</tr>
+<tr>
+<td><a href="https://salsa.debian.org/extrepo-team/extrepo-data/-/merge_requests/537">!537: Add: LinuxCNC repository</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Raspberry Pi / linux</h2>
+<table>
+<thead><tr>
+<th>Pull Request</th>
+</tr></thead>
+<tbody><tr>
+<td><a href="https://github.com/raspberrypi/linux/pull/7223">#7223 configs: enable Si5351 i2c common clock driver</a></td>
+</tr></tbody>
+</table>
+<h2>Kernel workflow Tool</h2>
+<table>
+<thead><tr>
+<th>Pull Request</th>
+</tr></thead>
+<tbody><tr>
+<td><a href="https://github.com/kworkflow/kworkflow/pull/1261">#1261 documentation/content/installanduninstall: add Debian to package install</a></td>
+</tr></tbody>
+</table>
+<h2>KiCad / kicad-website</h2>
+<table>
+<thead><tr>
+<th>Merge Requests</th>
+</tr></thead>
+<tbody><tr>
+<td><a href="https://gitlab.com/kicad/services/kicad-website/-/merge_requests/676">!676: [Debian] content/download/linux-distro: update to current stable release</a></td>
+</tr></tbody>
+</table>
+<h2>Meshtastic</h2>
+<table>
+<thead><tr>
+<th>Pull Request</th>
+</tr></thead>
+<tbody><tr>
+<td><a href="https://github.com/meshtastic/meshtastic/pull/2309">#2309 docs: Add installation instructions for Debian using extrepo</a></td>
+</tr></tbody>
+</table>
+<h2>RISC-V / learn</h2>
+<table>
+<thead><tr>
+<th>Pull Request</th>
+</tr></thead>
+<tbody><tr>
+<td><a href="https://github.com/riscv/learn/pull/77">#77 Add: RISC-V Vector (RVV) Primer to learning resources</a></td>
+</tr></tbody>
+</table>
+<h2>Ending Thoughts</h2>
+<p>That’s all for Q1 of 2026. I hope to post quarterly updates and I guess this will keep people informed about my foss activity and possibly attract potential contributors.</p>
+    </section><aside class="postpromonav"><nav><ul class="pager hidden-print pagination">
+<li class="previous">
+                <a class="hover:pagination__link" href="../foss-contributions-2025h2/" rel="prev" title="FOSS Activity 2025 (Q3 &amp; Q4)"> ← Previous post</a>
+            </li>
+        </ul></nav></aside></article></main><footer class="article__meta footer"><div>
+          <p class="footer-content">
+Contents by <a href="../../contact">krvprashanth</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a><br>
+This site uses willy-wonky theme by <a href="https://gitlab.com/ru2saig/willy-wonky" target="_blank" rel="noopener">ru2saig</a><br></p>
+<div class="license">
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<img alt="Creative Commons License BY-NC-SA" style="border-width:0; margin-bottom:12px;" src="../../images/cc-88x31.png"></a>
+</div>
+
+
+	</div>
+	<div>
+          
+	</div>
+        </footer>
+</div>
+    </div>
+                <script src="../../assets/js/index.js"></script><script src="../../assets/js/baguetteBox.min.js"></script><script>
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+    </script>
+</body>
+</html>

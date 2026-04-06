@@ -1,5 +1,5 @@
 <!--
-.. title: FOSS Contributions 2025Q2
+.. title: FOSS Activity 2025Q2
 .. slug: foss-contributions-2025q2
 .. date: 2025-07-01 00:00:00 IST
 .. tags: foss-contributions, debian, duckietown

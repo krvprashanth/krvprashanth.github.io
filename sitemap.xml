@@ -7,78 +7,110 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://krvprashanth.in/</loc>
-  <lastmod>2025-07-03T08:04:00Z</lastmod>
+  <lastmod>2026-04-06T17:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/2025/</loc>
-  <lastmod>2025-06-30T18:44:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/2026/</loc>
+  <lastmod>2026-04-06T17:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/archive.html</loc>
-  <lastmod>2025-07-07T10:51:00Z</lastmod>
+  <lastmod>2026-04-06T17:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/</loc>
-  <lastmod>2025-07-03T08:04:00Z</lastmod>
+  <lastmod>2026-04-06T18:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/cat_nikola/</loc>
-  <lastmod>2025-06-30T18:44:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/debian/</loc>
-  <lastmod>2025-06-30T18:44:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/duckietown/</loc>
-  <lastmod>2025-06-30T18:44:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/foss-contributions/</loc>
-  <lastmod>2025-06-30T18:44:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/gsm/</loc>
-  <lastmod>2025-07-03T08:04:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/kicad/</loc>
+  <lastmod>2026-04-06T18:02:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/kworkflow/</loc>
+  <lastmod>2026-04-06T18:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/limesdr/</loc>
-  <lastmod>2025-07-03T08:04:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/meshtastic/</loc>
+  <lastmod>2026-04-06T18:02:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/osmocom/</loc>
-  <lastmod>2025-07-03T08:04:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/raspberrypi/</loc>
+  <lastmod>2026-04-06T18:02:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/riscv/</loc>
+  <lastmod>2026-01-05T11:48:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/tuxsuite/</loc>
+  <lastmod>2026-01-05T11:48:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/galleries/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/galleries/demo/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/listings/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
- </url>
- <url>
-  <loc>https://krvprashanth.in/listings/__pycache__/</loc>
-  <lastmod>2025-06-27T15:48:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/listings/hello.py.html</loc>
-  <lastmod>2025-06-30T10:56:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/pages/about/</loc>
-  <lastmod>2025-06-27T16:52:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/posts/foss-contributions-2025h2/</loc>
+  <lastmod>2026-01-05T11:48:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/posts/foss-contributions-2025q2/</loc>
-  <lastmod>2025-06-30T18:40:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/posts/foss-contributions-2026q1/</loc>
+  <lastmod>2026-04-06T17:14:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/posts/homebrew-gsm-base-station/</loc>
-  <lastmod>2025-07-03T08:04:00Z</lastmod>
+  <lastmod>2026-01-05T11:17:00Z</lastmod>
  </url>
 </urlset>
