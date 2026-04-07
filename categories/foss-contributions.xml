@@ -6,7 +6,7 @@
 style="border-width:0; margin-bottom:12px;"
 src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;/div&gt;
-</copyright><lastBuildDate>Tue, 07 Apr 2026 06:38:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>FOSS Activity 2026Q1</title><link>https://krvprashanth.in/posts/foss-contributions-2026q1/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
+</copyright><lastBuildDate>Tue, 07 Apr 2026 07:14:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>FOSS Activity 2026Q1</title><link>https://krvprashanth.in/posts/foss-contributions-2026q1/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
 &lt;p&gt;Hello everyone! Quarterly post about the contributions I’ve made or things I found interesting in collaborative Free and Open Source Software development. &lt;/p&gt;
 &lt;h2&gt;Debian GNU/Linux&lt;/h2&gt;
 &lt;h3&gt;&lt;a href="https://tracker.debian.org/pkg/linux"&gt;linux&lt;/a&gt;:&lt;/h3&gt;
@@ -254,6 +254,13 @@ src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;h2&gt;Linaro / tuxsuite&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Opened issue &lt;a href="https://gitlab.com/Linaro/tuxsuite/-/issues/206"&gt;#204&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://gitlab.com/stylesen"&gt;@stylesen&lt;/a&gt; updated the respective project documentation to include installation with extrepo. Following are the relevant docs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TuxSuite - &lt;a href="https://docs.tuxsuite.com/#install-using-debian-extrepo"&gt;https://docs.tuxsuite.com/#install-using-debian-extrepo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;TuxMake  - &lt;a href="https://docs.tuxmake.org/install-deb"&gt;https://docs.tuxmake.org/install-deb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;TuxRun   - &lt;a href="https://tuxrun.org/install-deb/#install-using-debian-extrepo"&gt;https://tuxrun.org/install-deb/#install-using-debian-extrepo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;TuxLAVA  - &lt;a href="https://tuxlava.org/install-deb/#install-using-debian-extrepo"&gt;https://tuxlava.org/install-deb/#install-using-debian-extrepo&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;RISC-V / learn&lt;/h2&gt;
 &lt;table&gt;

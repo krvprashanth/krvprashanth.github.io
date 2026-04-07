@@ -53,6 +53,13 @@ Hello everyone! I ended up skipping 2025Q3 since there was not much to post abou
 #  Linaro / tuxsuite 
 - Opened issue [#204](https://gitlab.com/Linaro/tuxsuite/-/issues/206)
 
+[@stylesen](https://gitlab.com/stylesen) updated the respective project documentation to include installation with extrepo. Following are the relevant docs:
+
+- TuxSuite - [https://docs.tuxsuite.com/#install-using-debian-extrepo](https://docs.tuxsuite.com/#install-using-debian-extrepo)
+- TuxMake  - [https://docs.tuxmake.org/install-deb](https://docs.tuxmake.org/install-deb)
+- TuxRun   - [https://tuxrun.org/install-deb/#install-using-debian-extrepo](https://tuxrun.org/install-deb/#install-using-debian-extrepo)
+- TuxLAVA  - [https://tuxlava.org/install-deb/#install-using-debian-extrepo](https://tuxlava.org/install-deb/#install-using-debian-extrepo)
+
 # RISC-V / learn
 | Pull Requests |
 | ---   |
