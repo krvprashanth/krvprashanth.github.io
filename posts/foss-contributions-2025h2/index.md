@@ -40,7 +40,7 @@ Hello everyone! I ended up skipping 2025Q3 since there was not much to post abou
 | [!1079: debian.org/blends: add downloads quick link of Debian Jr. blend](https://salsa.debian.org/webmaster-team/webwml/-/merge_requests/1079) |
 
 ## [extrepo](https://tracker.debian.org/pkg/extrepo):
-| Merge Request | 
+| Merge Requests | 
 | ---   |
 | [!445: Add: Debian ROCm repository](https://salsa.debian.org/extrepo-team/extrepo-data/-/merge_requests/445) | 
 | [!453: Add: Meshtastic repository](https://salsa.debian.org/extrepo-team/extrepo-data/-/merge_requests/453) |
@@ -54,7 +54,7 @@ Hello everyone! I ended up skipping 2025Q3 since there was not much to post abou
 - Opened issue [#204](https://gitlab.com/Linaro/tuxsuite/-/issues/206)
 
 # RISC-V / learn
-| Pull Request |
+| Pull Requests |
 | ---   |
 | [#61 Add: BeagleV RISC-V Boards](https://github.com/riscv/learn/pull/61)   |
 | [#62 Add: operating-system-in-1000-lines to learning resources](https://github.com/riscv/learn/pull/62)   |

@@ -6,7 +6,7 @@
 style="border-width:0; margin-bottom:12px;"
 src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;/div&gt;
-</copyright><lastBuildDate>Mon, 06 Apr 2026 18:02:07 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>FOSS Activity 2026Q1</title><link>https://krvprashanth.in/posts/foss-contributions-2026q1/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
+</copyright><lastBuildDate>Tue, 07 Apr 2026 06:38:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>FOSS Activity 2026Q1</title><link>https://krvprashanth.in/posts/foss-contributions-2026q1/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
 &lt;p&gt;Hello everyone! Quarterly post about the contributions I’ve made or things I found interesting in collaborative Free and Open Source Software development. &lt;/p&gt;
 &lt;h2&gt;Debian GNU/Linux&lt;/h2&gt;
 &lt;h3&gt;&lt;a href="https://tracker.debian.org/pkg/linux"&gt;linux&lt;/a&gt;:&lt;/h3&gt;
@@ -54,7 +54,7 @@ src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;Merge Requests&lt;/th&gt;
+&lt;th&gt;Merge Request&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
@@ -118,7 +118,7 @@ src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;Merge Requests&lt;/th&gt;
+&lt;th&gt;Merge Request&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;

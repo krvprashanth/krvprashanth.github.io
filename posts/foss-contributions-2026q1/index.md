@@ -30,7 +30,7 @@ Hello everyone! Quarterly post about the contributions I’ve made or things I f
 | [!85: Add: Support for D-step version of BCM2712 Raspberry Pi 5](https://salsa.debian.org/installer-team/flash-kernel/-/merge_requests/85) |
 
 ## [optee-os](https://tracker.debian.org/pkg/optee-os):
-| Merge Requests | 
+| Merge Request | 
 | ---   |
 | [!2:  Build optee-os for TI K3 J721E/TDA4VM BeagleBone AI-64](https://salsa.debian.org/debian/optee-os/-/merge_requests/2) |
 
@@ -54,7 +54,7 @@ Hello everyone! Quarterly post about the contributions I’ve made or things I f
 | [#1261 documentation/content/installanduninstall: add Debian to package install](https://github.com/kworkflow/kworkflow/pull/1261)   |
 
 # KiCad / kicad-website
-| Merge Requests |
+| Merge Request |
 | ---   | 
 | [!676: [Debian] content/download/linux-distro: update to current stable release](https://gitlab.com/kicad/services/kicad-website/-/merge_requests/676) |
 
