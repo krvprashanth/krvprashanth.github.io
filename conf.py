@@ -12,7 +12,7 @@ SITE_URL = "https://krvprashanth.in/"
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://krvprashanth.in/"
 BLOG_CONTACT_PAGE = "/contact"
-BLOG_EMAIL = "krvprashanth@gmail.com"
+BLOG_EMAIL = "krvprashanth@riseup.net"
 BLOG_DESCRIPTION = "Bytes Beyond Bandwidth"  # (translatable)
 DEFAULT_LANG = "en"
 
@@ -28,6 +28,8 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/", "blog"),
+        ("/pages/academia/", "academia"),
+        ("/pages/talks/", "talks"),
         ("/pages/about/", "about"),
 #        ("/archive/", "archive"),
         ("/rss.xml", "feed"), # TODO: Put this in the bottom, somehwere? As a clickable icon?
