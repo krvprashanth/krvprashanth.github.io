@@ -18,12 +18,6 @@ Worked on the topic of **Bio-Inspired Aerial Robotics** under the guidance of [P
 <div style="height: 30px;"></div>
 
 <div style="text-align:center;">
-<img src="/images/fwr-rnd2024-poster.svg" style="max-width:90%; height:auto;">
-</div>
-
-<div style="height: 30px;"></div>
-
-<div style="text-align:center;">
   <div style="display:inline-block; width:100%; max-width:560px;">
     <iframe width="100%" height="315"
       src="https://www.youtube.com/embed/vqJ58n77Bsc"
@@ -36,4 +30,10 @@ Worked on the topic of **Bio-Inspired Aerial Robotics** under the guidance of [P
 
 <div align="center">
 <em>Accepted to 2024 IEEE International Conference on Mechatronics and Automation (<a href="http://2024.ieee-icma.org/Home/Home.aspx">IEEE ICMA 2024</a>)</em>
+</div>
+
+<div style="height: 30px;"></div>
+
+<div style="text-align:center;">
+<img src="/images/fwr-rnd2024-poster.svg" style="max-width:90%; height:auto;">
 </div>
