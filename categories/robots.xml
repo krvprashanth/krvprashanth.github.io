@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>krvprashanth (Posts about robots)</title><link>https://krvprashanth.in/</link><description></description><atom:link href="https://krvprashanth.in/categories/robots.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents by krvprashanth&lt;/a&gt; 
+&lt;div class="license"&gt;
+&lt;a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"&gt;
+&lt;img alt="Creative Commons License BY-NC-SA"
+style="border-width:0; margin-bottom:12px;"
+src="/images/cc-88x31.png"&gt;&lt;/a&gt;
+&lt;/div&gt;
+</copyright><lastBuildDate>Tue, 21 Apr 2026 12:19:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[ONGOING] Duckies, Beagles and Robots!</title><link>https://krvprashanth.in/posts/duckies-beagles-and-robots/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
+&lt;p&gt;Exploring the feasibility of adapting the Duckietown robotics software stack to run seamlessly on BeagleBoard.org platforms.&lt;/p&gt;</description><category>beagles</category><category>duckies</category><category>robots</category><guid>https://krvprashanth.in/posts/duckies-beagles-and-robots/</guid><pubDate>Tue, 21 Apr 2026 11:54:03 GMT</pubDate></item></channel></rss>

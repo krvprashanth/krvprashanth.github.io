@@ -7,7 +7,11 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://krvprashanth.in/</loc>
-  <lastmod>2026-04-21T09:45:00Z</lastmod>
+  <lastmod>2026-04-21T11:47:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/1111/</loc>
+  <lastmod>2026-04-21T11:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/2025/</loc>
@@ -19,11 +23,15 @@
  </url>
  <url>
   <loc>https://krvprashanth.in/archive.html</loc>
-  <lastmod>2026-04-07T09:53:00Z</lastmod>
+  <lastmod>2026-04-21T12:18:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/</loc>
-  <lastmod>2026-04-06T18:02:00Z</lastmod>
+  <lastmod>2026-04-21T12:21:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/beagles/</loc>
+  <lastmod>2026-04-21T11:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/cat_nikola/</loc>
@@ -32,6 +40,10 @@
  <url>
   <loc>https://krvprashanth.in/categories/debian/</loc>
   <lastmod>2026-01-05T11:17:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/duckies/</loc>
+  <lastmod>2026-04-21T11:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/duckietown/</loc>
@@ -70,8 +82,16 @@
   <lastmod>2026-04-06T18:02:00Z</lastmod>
  </url>
  <url>
+  <loc>https://krvprashanth.in/categories/raspiberrypi/</loc>
+  <lastmod>2026-04-21T12:21:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://krvprashanth.in/categories/riscv/</loc>
   <lastmod>2026-01-05T11:48:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/categories/robots/</loc>
+  <lastmod>2026-04-21T11:47:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/categories/tuxsuite/</loc>
@@ -104,6 +124,18 @@
  <url>
   <loc>https://krvprashanth.in/pages/talks/</loc>
   <lastmod>2026-04-07T09:52:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/posts/dbr/</loc>
+  <lastmod>2026-04-21T11:46:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/posts/debian-14-forky-on-raspberry-pi-5/</loc>
+  <lastmod>2026-04-21T12:18:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://krvprashanth.in/posts/duckies-beagles-and-robots/</loc>
+  <lastmod>2026-04-21T11:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://krvprashanth.in/posts/foss-contributions-2025h2/</loc>

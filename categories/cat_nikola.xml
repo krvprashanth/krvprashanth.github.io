@@ -6,7 +6,8 @@
 style="border-width:0; margin-bottom:12px;"
 src="/images/cc-88x31.png"&gt;&lt;/a&gt;
 &lt;/div&gt;
-</copyright><lastBuildDate>Tue, 21 Apr 2026 09:10:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>FOSS Activity 2026Q1</title><link>https://krvprashanth.in/posts/foss-contributions-2026q1/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
+</copyright><lastBuildDate>Tue, 21 Apr 2026 12:19:31 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>[ONGOING] Duckies, Beagles and Robots!</title><link>https://krvprashanth.in/posts/duckies-beagles-and-robots/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
+&lt;p&gt;Exploring the feasibility of adapting the Duckietown robotics software stack to run seamlessly on BeagleBoard.org platforms.&lt;/p&gt;</description><category>beagles</category><category>duckies</category><category>robots</category><guid>https://krvprashanth.in/posts/duckies-beagles-and-robots/</guid><pubDate>Tue, 21 Apr 2026 11:54:03 GMT</pubDate></item><item><title>FOSS Activity 2026Q1</title><link>https://krvprashanth.in/posts/foss-contributions-2026q1/</link><dc:creator>krvprashanth</dc:creator><description>&lt;hr&gt;
 &lt;p&gt;Hello everyone! Quarterly post about the contributions I’ve made or things I found interesting in collaborative Free and Open Source Software development. &lt;/p&gt;
 &lt;h2&gt;Debian GNU/Linux&lt;/h2&gt;
 &lt;h3&gt;&lt;a href="https://tracker.debian.org/pkg/linux"&gt;linux&lt;/a&gt;:&lt;/h3&gt;
