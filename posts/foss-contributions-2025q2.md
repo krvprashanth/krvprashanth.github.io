@@ -12,7 +12,7 @@
 ---
 Hello everyone! I’m starting a series of quarterly posts about the contributions I’ve made or things I found interesting in collaborative Free and Open Source Software development. I will try to post one every quarter - let’s see how this goes.
 
-# Debian
+# Debian GNU/Linux
 ### Debian Installer / flash-kernel
 Debian Raspberry Pi Maintainers wanted to explore whether they should still be building one image per family, or they could instead switch to one image per architecture (armel, armhf, arm64) and also the available set of images for running Debian on Raspberry Pi computers using/require some necessary platform-specific changes primarily in the early boot sequence and firmware handling. Unlike typical Debian systems, Raspberry Pi devices depend on proprietary bootloader and uses non-free firmware (raspi-firmware) closed-source GPU bootloader which is tightly coupled to Raspberry Pi hardware-specific differences in the initialization process. These differences are largely confined to the early boot and hardware initialization stages. Once the system boots, the userspace remains closely aligned with a typical Debian install, using Debian packages.
 
